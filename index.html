@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .form-1{
+            border :3px solid #f0f0f0 ;
+            border-radius: 10px;
+            padding: 15px;
+            width: 70%;
+            margin-top: 10%;
+            margin-left:13%;
+        }
+
+        .form-2{
+            border :3px solid #f0f0f0 ;
+            border-radius: 10px;
+            padding: 15px;
+            width: 70%;
+            margin-top: 2%;
+            margin-left:13%;
+        }
+        .form-3{
+            border :3px solid #f0f0f0 ;
+            border-radius: 10px;
+            padding: 15px;
+            width:70%;
+            margin-top: 2%;
+            margin-left:13%;
+            
+        }
+
+        .fieldset-1{
+            width: 60%;
+        }
+        .fieldset-2{
+            /* width: 40%; */
+            padding-left: 60px;
+        }
+
+        .fieldset-3{
+            width: 60%;
+        }
+        .fieldset-4{
+            /* width: 40%; */
+            padding-left: 50px;
+        }
+        @media only screen and (max-width: 769px) {
+            .form-1,.form-2,.form-3{
+                width: 90%;
+                margin-left: 6%;
+            }
+            .fieldset-1, .fieldset-3{
+                width: 100%;
+                display: block;
+                margin-left: 45%;
+            }
+            .fieldset-2, .fieldset-4{
+                width: 100%;
+                display: block;
+                margin-left: 45%;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            .fieldset-1,.fieldset-3{
+            margin-left: 25%;
+            }
+            .fieldset-2,.fieldset-4{
+                margin-left: 25%;
+            }
+
+        }
+        @media only screen and (max-width: 360px) {
+            .fieldset-1,.fieldset-3{
+            margin-left: 0%;
+            }
+            .fieldset-2,.fieldset-4{
+                margin-left:0%;
+            }
+
+        }
+        @media only screen and (max-width: 450px) {
+            .fieldset-1,.fieldset-3{
+            margin-left: 0vw;
+            }
+            .fieldset-2,.fieldset-4{
+                margin-left:0vw;
+            }
+
+        }
+
+
+
+        
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=S, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body class="container">
+    <div class="calculator">
+    
+        <div class="form-1">
+            <form method="POST">
+                <table>
+                    <td class="fieldset-1">
+            What is<input type="text" id="value" autocomplete="off"  name="value" style="margin:10px;width: 90px;padding: 4px;">
+            % of    <input type="text" id="total" autocomplete="off" name="total" style="margin:10px;width: 90px;padding: 4px; " >?
+        </td>
+        <td class="fieldset-2">
+            <input type="button" value="calculate" class="btn btn-primary " style="border: none;" onclick="percentage()">
+            <button type="button" id="eraser1"  class="eraser btn"><i class="fa fa-eraser"></i></button>
+            <input type="text" id="display"  class="display" readonly="readonly" style="margin:10px;width: 90px;padding: 4px;">
+        </td>
+        </table>
+        </form>
+        </div>
+        <div class="form-2">
+            <form method="POST">
+                <table>
+                    <td class="fieldset-1">
+            <input type="text" id="value1"  name="value1" autocomplete="off" style="margin:10px;width: 90px;padding: 4px;">is what percent of
+            <input type="text" id="total1" name="total1" autocomplete="off" style="margin:10px;width: 90px;padding: 4px; " >?
+        </td>
+        <td class="fieldset-2">
+            <input type="button" value="calculate" class="btn btn-primary " style="border: none; " onclick="percentage1()">
+            <button type="button" id="eraser2"  class="eraser btn"><i class="fa fa-eraser"></i></button>
+            <input type="text" id="display1"  class="display" readonly="readonly" style="margin:10px;width: 90px;padding: 4px;">
+        </td>
+        </table>
+        </div>
+        </form>
+        </div>
+        <div class="form-3 ">
+            <form method="POST" >
+                <table>
+                    <td class="fieldset-3">
+                        <p>What is the percentage increase/decrease</p>
+                        from<input type="text" id="value2"  name="value2" autocomplete="off" style="margin:10px;width: 90px;padding: 4px;">
+                        to<input type="text" id="total2" name="total2" autocomplete="off" style="margin:10px;width: 90px;padding: 4px; " >
+                    </td>
+                     <td class="fieldset-4  ">
+                        <input type="button" value="calculate" class="btn btn-primary " style="border: none;" onclick="percentage2()">
+                        <button type="button" id="eraser3"  class="eraser btn"><i  class="fa fa-eraser"></i></button>
+                        <input type="text" id="display2"  class="display" readonly="readonly" style="margin:10px;width: 90px;padding: 4px;">%
+                    </td>   
+                </table>
+            </form>
+        </div>
+        <h1>percent calculator</h1>
+</div>
+    <script>
+        document.getElementById('eraser1').addEventListener("click",erase);
+        document.getElementById('eraser3').addEventListener("click",erase3);
+        document.getElementById('eraser2').addEventListener("click",erase2);
+        function percentage(){
+        var value = document.getElementById('value').value;      
+        var total = document.getElementById('total').value;
+        document.getElementById('display').value=value/100*total;
+    }
+    function percentage1(){
+        var value1 = document.getElementById('value1').value;      
+        var total1 = document.getElementById('total1').value;
+        document.getElementById('display1').value=value1/total1*100;
+    }
+    function percentage2(){
+        var value1 = document.getElementById('value2').value;
+        var value2 = document.getElementById('total2').value;
+        document.getElementById('display2').value = (value2-value1)/value1 *100;
+    }
+    function erase(){
+        document.getElementById('value').value="";      
+        document.getElementById('total').value="";
+        document.getElementById('display').value="";
+    }
+    function erase2(){
+        document.getElementById('value1').value="";      
+        document.getElementById('total1').value="";
+        document.getElementById('display1').value="";
+    }
+    function erase3(){
+        document.getElementById('value2').value="";      
+        document.getElementById('total2').value="";
+        document.getElementById('display2').value="";
+    }
+
+
+    
+
+    </script>
+</body>
+</html>
